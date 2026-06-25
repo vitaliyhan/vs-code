@@ -1,0 +1,17 @@
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - PASSWORD=${PASSWORD}
+      - SUDO_PASSWORD=${SUDO_PASSWORD}
+      - PROXY_DOMAIN=${PROXY_DOMAIN}
+      - DEFAULT_WORKSPACE=${DEFAULT_WORKSPACE}
+    volumes:
+      - ${CODE_SERVER_CONFIG_PATH}:/config
+    ports:
+      - "${CODE_SERVER_PORT}:8443"
+    restart: unless-stopped
